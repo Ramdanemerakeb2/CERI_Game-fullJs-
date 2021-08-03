@@ -1,0 +1,45 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!------ J'ai importer les script car j'arrive pas a les importer dans angular.json ---------->
+
+<nav class=" navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+   <span class="navbar-brand mb-0 h1">CERIGame</span>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor01">
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item active">
+         <a class="nav-link" routerLink="accueil">Home</a>
+       </li>
+       <li *ngIf="etatConnection" class="nav-item active">
+        <a class="nav-link" routerLink="quiz">Game</a>
+      </li>
+      <li *ngIf="etatConnection" class="nav-item active">
+        <a class="nav-link" routerLink="profile">profile</a>
+      </li>
+     </ul>
+     <div classe="navbar-right">
+       <div *ngIf="etatConnection">
+        <p>{{dateConnexion}}</p>
+        <button type="button" [routerLink]="'/accueil'" (click)="logout()" class="btn btn-warning">Déconnexion</button>
+       </div>
+       <div *ngIf="!etatConnection">
+        <button type="button" [routerLink]="'/login'" class="btn btn-success">S'identifier</button>
+       </div>
+       
+     </div>
+  </div>
+ </div>
+</nav>
+
+<!-- <app-bandeau [messageIn]='auth.message' [isAthenB]='auth.IsLogged()' [conn]='auth.connexion'></app-bandeau> -->
+<div>
+  <router-outlet></router-outlet>
+  <simple-notifications></simple-notifications>
+</div>
+
+  
